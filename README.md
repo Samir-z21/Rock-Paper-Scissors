@@ -1,2 +1,5 @@
-# Rock-Paper-Scissors
-My first JavaScript project !! I'll be creating a website where the user gets to play rock paper scissors against the cpu. 
+//Peusocode//
+
+    Create a function called getComputerChoice,
+    Which randomly returns either values such as 'Rock', 'Paper' or 'Scissors',
+    
