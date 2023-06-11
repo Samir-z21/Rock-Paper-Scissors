@@ -1,4 +1,5 @@
-// Peusocode //
+//Peusocode//
+
     1.
     Create a function called getComputerChoice,
     Which randomly returns values such as 'Rock', 'Paper' or 'Scissors',

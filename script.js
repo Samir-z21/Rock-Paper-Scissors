@@ -11,30 +11,26 @@
 
 // Makes customer input case-insensitive //   
 let promptAnswer = prompt ("Rock, Paper or Scissors? ")
-let playerSelection = promptAnswer.toLowerCase()
+let playerSelection = (promptAnswer.slice(0,1).toUpperCase() + promptAnswer.slice(1).toLowerCase())
 
 console.log(playerSelection)
 
-function singleRound(playerSelection, computerSelecion) {
-    if (playerSelection === "rock" && computerSelecion === "Paper") {
-        return "You Lose! Paper beats Rock"
-    } else if (playerSelection === "rock" && computerSelecion === "Scissors") {
-        return "You Win! Rock beats Scissors"
-    } else if (playerSelection === "rock" && computerSelecion === "Rock") {
-        return "It's a Draw!"
-    } else if (playerSelection === "paper" && computerSelecion === "Paper") {
-        return "It's a Draw"
-    } else if (playerSelection === "paper" && computerSelecion === "Scissors") {
-        return "You Lose! Scissors beats Paper"
-    } else if (playerSelection === "paper" && computerSelecion === "Rock") {
-        return "You Win! Paper beats Rock"
-    } else if (playerSelection === "scissors" && computerSelecion === "Paper") {
-        return "You Win! Scissors beats Paper"
-    } else if (playerSelection === "scissors" && computerSelecion === "Scissors") {
-        return "It's a Draw" 
-    } else if (playerSelection === "scissors" && computerSelecion === "Rock") {
-        return "You Lose! Rock beats scissors"
-    } else return "please write correctly"
+// Function for a single round of play // 
+function singleRound(playerSelection, computerSelecion) { 
+    if (playerSelection === computerSelecion) {
+        return "It's a Draw!" 
+    } else if (
+        (playerSelection === "Rock" && computerSelecion === "Paper") || (playerSelection === "Paper" && computerSelecion === "Scissors") || (playerSelection === "Scissors" && computerSelecion === "Rock")
+        ){
+        return "You Lose! " + computerSelecion + " beats " + playerSelection
+    } else if ( 
+        (playerSelection === "Rock" && computerSelecion === "Scissors") ||(playerSelection === "Paper" && computerSelecion === "Rock") ||
+        (playerSelection === "Scissors" && computerSelecion === "Paper")
+        ){
+        return "You Win! " + playerSelection + " beats " + Scissors
+    }  else { 
+        return "please write correctly"
+    }
 }
 
 let computerSelecion = getComputerChoice() 
