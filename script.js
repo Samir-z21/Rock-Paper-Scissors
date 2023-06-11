@@ -1,11 +1,19 @@
-// Array containing desired values//
-let selections = ["Rock", "Paper", "Scissors"]
+// Function that picks a random value from the array and returns it //
+    function getComputerChoice() {
 
-// Function that picks a random value from the previous array and returns it //
-function getComputerChoice() {
-    return selections[Math.floor(Math.random()* selections.length)]
+    // Array containing desired values //
+    let selections = ["Rock", "Paper", "Scissors"]
+
+    // Genereting a value from the array at random and returning it //
+    let computerSelecion = selections[Math.floor(Math.random()* selections.length)];
+    return computerSelecion
 }
 
-console.log(getComputerChoice())
+// Makes customer input case-insensitive //   
+let promptAnswer = prompt ("Rock, Paper or Scissors? ")
+let playerSelection = promptAnswer.toLowerCase()
+
+console.log(playerSelection)
+
 
 
