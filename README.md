@@ -13,7 +13,7 @@
         b. return the result of the round, 
     
     3.
-    Create a function that plays a game of 5 rounds keeping count of the score and stating the winner at the end of it, 
-        a. call upon previous function 5 times,
-        b. show and update the score after each round,
-        c. end the game after 5 rounds and declare a winner, 
+    Create a function that plays a game of 5 rounds keeping count of score and announcing a winner at the end, 
+        a. call upon previous function 5 times in a way that it plays one round at a time,
+        b. update and return the score after each round,
+        c. end the game after 5 rounds and declare the winner who won most rounds, 
