@@ -1,79 +1,85 @@
-// Function that picks a random value from the array and returns it //
-    function getComputerChoice() {
-    let selections = ["Rock", "Paper", "Scissors"]
-    let computerSelection = selections[Math.floor(Math.random()* selections.length)];
-    return computerSelection
+// Computer's Choice 
+function getComputerChoice () {
+
+    // An array of values
+    let arraySelctions = ["Rock", "Paper", "Scissors"];
+
+    // Number generator
+    let computerChoice = arraySelctions[Math.floor(Math.random() * 3)];
+    return computerChoice 
 }
 
-// Function for a single round of play //
-function singleRound() { 
-    // Prompt choice and make customer input case-insensitive // 
-    let promptAnswer = prompt ("Rock, Paper, or Scissors? ")
-    let playerSelection = (promptAnswer.slice(0,1).toUpperCase() + promptAnswer.slice(1).toLowerCase());
 
-    // Get computer's selection 
-    let computerSelection = getComputerChoice(); 
+// Single round of play
+function singleRound () {
 
-    // To add meaningful replies //
-    console.log("The Player selected " + playerSelection + ".");
-    console.log("The CPU selected " + computerSelection + "."); 
+    let computerSelection = getComputerChoice()
 
-    // Returning output of the round//
+    // Prompt for player's selection
+    let playerInput = prompt("Rock, Paper, or Scissors?")
+
+    // Make player input case-insensitive
+    let playerSelection = playerInput.slice(0,1).toUpperCase() + playerInput.slice(1).toLowerCase()
+
+    // Return selections messages 
+    console.log("The Player selected " + playerSelection + ".")
+    console.log("The Computer selected " + computerSelection + ".")
+   
+
+    // Result of the round
     if (playerSelection === computerSelection) {
-        return ("It's a Draw!");
+        return "It's a Draw!"
     } else if (
-        (playerSelection === "Rock" && computerSelection === "Scissors") ||(playerSelection === "Paper" && computerSelection === "Rock") ||
-        (playerSelection === "Scissors" && computerSelection === "Paper")
-    ){
-        return ("You Win! " + playerSelection + " beats " + computerSelection);
-
-    }  else if ( 
-        (playerSelection === "Rock" && computerSelection === "Paper") || (playerSelection === "Paper" && computerSelection === "Scissors") || (playerSelection === "Scissors" && computerSelection === "Rock")
-    ){ 
-        return ("You Lose! " + computerSelection + " beats " + playerSelection);
-
-    }   else { 
-         return "please type correctly idiot"
-    }   
-
-}
-
-// Function for the game //
-function game() {
-    let cpuCounter = 0;
-    let playerCounter = 0;
-    // Loop code 5 times 
-    for (let i = 0; i < 5; i++) {
-        let result = singleRound();
-
-        // Add a socre counter
-        if (result.includes("Win")) {
-            ++playerCounter;
-        } else if (result.includes("Lose")) {
-            cpuCounter++;
-        }
-        
-        // return the counter the winner
-        console.log(result);
-        console.log("Player score: " + playerCounter + " | CPU score: " + cpuCounter);
-    }
-
-    // To declare a winner after the game
-    if (playerCounter > cpuCounter) {
-        return "Player wins the game!";
-    } else if (cpuCounter > playerCounter) {
-        return "CPU wins the game!";
+        playerSelection === "Rock" && computerSelection === "Scissors" || playerSelection === "Paper" && computerSelection === "Rock" || playerSelection === "Scissors" && computerSelection === "Paper"
+    ) {
+        return "You Win! " + playerSelection + " beats " + computerSelection + "."
+    } else if (
+        playerSelection === "Rock" && computerSelection === "Paper" ||
+        playerSelection === "Paper" && computerSelection === "Scissors" ||
+        playerSelection === "Scissors" && computerSelection === "Rock"
+    ) { 
+        return "You Lose! " + computerSelection + " beats " + playerSelection + "."
     } else {
-        return "it's a tie!";
+        return "type correctly idiot."
     }
 }
 
+ 
+function game () {
+    
+    // Create counters
+    let playerCounter = 0;
+    let cpuCounter = 0;
+
+    // Create for loop
+    for (let i = 0; i < 5; i++) {
+         let rounds = singleRound();
+        
+    // Update and return results
+    if (rounds.includes("Win"))
+    {
+        ++playerCounter
+
+    } else if (rounds.includes("Lose")) {
+
+        ++cpuCounter
+    }
+
+    // Return round winner
+    console.log(rounds);
+    console.log("Player score: " + playerCounter + " | CPU score: " + cpuCounter);
+}
+
+// Declare winner after the game
+if (playerCounter > cpuCounter) {
+    return "Player wins the game!";
+} else if (cpuCounter > playerCounter) {
+    return ("Computer wins the game!")
+} else {
+    return "It's a tie"
+}
+}
 
 
-// Console checks 
+// Console checks
 console.log(game())
-
-
-
-
-
