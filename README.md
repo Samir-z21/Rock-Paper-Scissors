@@ -4,7 +4,7 @@
     Create a function that randomly returns values 'Rock', 'Paper' or 'Scissors',
         a. create a variable that contains an array of these values,
         b. create a code that generates either number 0, 1, or 2 at random,
-        c. assign the array to it so that it picks the value that is in that position,
+        c. assign the array to it so that it picks the value in that position,
         d. return the randomly selected value,
     
     2.

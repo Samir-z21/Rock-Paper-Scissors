@@ -9,22 +9,55 @@ function getComputerChoice () {
     return computerChoice 
 }
 
+// Reference to body
+const btn = document.querySelector('#buttons');
+const buttons = document.querySelectorAll('button');
+
+// Player's Choice
+let playerSelection; 
+
+buttons.forEach((button) => {
+ button.addEventListener('click', function(e) {
+
+   playerSelection = (e.target.innerText);
+
+   // Run single round result
+   const result = document.createElement ('div'); 
+   result.textContent = (singleRound());
+
+   btn.appendChild(result)
+
+
+  // Create counters
+  let playerCounter = 0;
+  let cpuCounter = 0; 
+
+  if (result.includes("Win"))
+  {
+      ++playerCounter
+
+  } else if (result.includes("Lose")) {
+
+      ++cpuCounter
+  }
+})
+})
+
 
 // Single round of play
 function singleRound () {
 
     let computerSelection = getComputerChoice()
 
-    // Prompt for player's selection
-    let playerInput = prompt("Rock, Paper, or Scissors?")
-
-    // Make player input case-insensitive
-    let playerSelection = playerInput.slice(0,1).toUpperCase() + playerInput.slice(1).toLowerCase()
-
     // Return selections messages 
-    console.log("The Player selected " + playerSelection + ".")
-    console.log("The Computer selected " + computerSelection + ".")
-   
+    const playerMessage = document.createElement ('div');
+    playerMessage.textContent = "The Player selected " + playerSelection + "."
+
+    const cpuMessage = document.createElement ('div');
+    cpuMessage.textContent = "The Computer selected " + computerSelection + "." 
+    
+    btn.appendChild(playerMessage)
+    btn.appendChild(cpuMessage)
 
     // Result of the round
     if (playerSelection === computerSelection) {
@@ -40,16 +73,16 @@ function singleRound () {
     ) { 
         return "You Lose! " + computerSelection + " beats " + playerSelection + "."
     } else {
-        return "type correctly idiot."
+        return "fix it idiot."
     }
+
+    
 }
 
  
 function game () {
     
-    // Create counters
-    let playerCounter = 0;
-    let cpuCounter = 0;
+   
 
     // Create for loop
     for (let i = 0; i < 5; i++) {
@@ -82,4 +115,3 @@ if (playerCounter > cpuCounter) {
 
 
 // Console checks
-console.log(game())
