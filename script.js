@@ -21,25 +21,11 @@ buttons.forEach((button) => {
 
    playerSelection = (e.target.innerText);
 
-   // Run single round result
+   // Return result
    const result = document.createElement ('div'); 
    result.textContent = (singleRound());
 
    btn.appendChild(result)
-
-
-  // Create counters
-  let playerCounter = 0;
-  let cpuCounter = 0; 
-
-  if (result.includes("Win"))
-  {
-      ++playerCounter
-
-  } else if (result.includes("Lose")) {
-
-      ++cpuCounter
-  }
 })
 })
 
@@ -80,9 +66,11 @@ function singleRound () {
 }
 
  
-function game () {
+/*function game () {
     
-   
+    // Create counters
+    let playerCounter = 0;
+    let cpuCounter = 0;
 
     // Create for loop
     for (let i = 0; i < 5; i++) {
@@ -112,6 +100,6 @@ if (playerCounter > cpuCounter) {
     return "It's a tie"
 }
 }
-
+*/
 
 // Console checks
