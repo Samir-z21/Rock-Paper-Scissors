@@ -22,6 +22,8 @@ let gameEnded = false;
 // Start Game
 buttons.forEach((button) => {
   button.addEventListener('click', function(e) {
+
+    // Flag check 
     if (gameEnded) return;
 
     // Remove the text for the next round
@@ -74,10 +76,16 @@ buttons.forEach((button) => {
       btn.appendChild(won);
       btn.appendChild(playAgain);
       gameEnded = true;
+      buttons.forEach((button)=> {
+        button.disabled = true;
+      })
     } else if (cpuCounter === 5) {
       btn.appendChild(lost);
       btn.appendChild(playAgain);
       gameEnded = true;
+      buttons.forEach((button)=> {
+        button.disabled = true;
+      })
     }
   });
 });
