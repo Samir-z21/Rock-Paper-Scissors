@@ -1,105 +1,129 @@
-// Computer's Choice 
-function getComputerChoice () {
-
-    // An array of values
-    let arraySelctions = ["Rock", "Paper", "Scissors"];
-
-    // Number generator
-    let computerChoice = arraySelctions[Math.floor(Math.random() * 3)];
-    return computerChoice 
-}
-
 // Reference to body
 const btn = document.querySelector('#buttons');
 const buttons = document.querySelectorAll('button');
 
 // Player's Choice
-let playerSelection; 
+let playerSelection;
 
+// Create counters
+let playerCounter = 0;
+let cpuCounter = 0;
+
+// Message elements
+let playerMessage;
+let cpuMessage;
+let result;
+let score;
+
+// Track if the game has ended 
+let gameEnded = false;
+
+
+// Start Game
 buttons.forEach((button) => {
- button.addEventListener('click', function(e) {
+  button.addEventListener('click', function(e) {
+    if (gameEnded) return;
 
-   playerSelection = (e.target.innerText);
+    // Remove the text for the next round
+    if (playerMessage && playerMessage.parentNode === btn) {
+        btn.removeChild(playerMessage);
+    }
+    if (cpuMessage && cpuMessage.parentNode === btn) {
+        btn.removeChild(cpuMessage);
+    }
+    if (result && result.parentNode === btn) {
+        btn.removeChild(result);
+    }
+    if (score && score.parentNode === btn) {
+        btn.removeChild(score);
+    }
+    
+    playerSelection = e.target.innerText;
 
-   // Return result
-   const result = document.createElement ('div'); 
-   result.textContent = (singleRound());
+    
+    // Run single round result
+    result = document.createElement('p');
+    result.textContent = singleRound();
+    btn.appendChild(result);
 
-   btn.appendChild(result)
-})
-})
+    // Display Score
+    if (result.textContent.includes("Win")) {
+      ++playerCounter;
+    } else if (result.textContent.includes("Lose")) {
+      ++cpuCounter;
+    }
+
+    score = document.createElement('p');
+    score.textContent = "Player score: " + playerCounter + " | CPU score: " + cpuCounter;
+    btn.appendChild(score);
+
+    // Announce Winner
+    const won = document.createElement('p');
+    won.textContent = "Congrats! You won the GAME!";
+    const lost = document.createElement('p');
+    lost.textContent = "Bummer! You lost the GAME!";
+
+    // Play again
+    const playAgain = document.createElement("button");
+    playAgain.textContent = "Play again";
+    playAgain.addEventListener("click", function() {
+      location.reload();
+    });
+
+    if (playerCounter === 5) {
+      btn.appendChild(won);
+      btn.appendChild(playAgain);
+      gameEnded = true;
+    } else if (cpuCounter === 5) {
+      btn.appendChild(lost);
+      btn.appendChild(playAgain);
+      gameEnded = true;
+    }
+  });
+});
+
 
 
 // Single round of play
-function singleRound () {
+function singleRound() {
+  const computerSelection = getComputerChoice();
 
-    let computerSelection = getComputerChoice()
+  // Return selections messages
+  playerMessage = document.createElement('div');
+  playerMessage.textContent = "The Player selected " + playerSelection + ".";
 
-    // Return selections messages 
-    const playerMessage = document.createElement ('div');
-    playerMessage.textContent = "The Player selected " + playerSelection + "."
+  cpuMessage = document.createElement('div');
+  cpuMessage.textContent = "The Computer selected " + computerSelection + ".";
 
-    const cpuMessage = document.createElement ('div');
-    cpuMessage.textContent = "The Computer selected " + computerSelection + "." 
-    
-    btn.appendChild(playerMessage)
-    btn.appendChild(cpuMessage)
+  btn.appendChild(playerMessage);
+  btn.appendChild(cpuMessage);
 
-    // Result of the round
-    if (playerSelection === computerSelection) {
-        return "It's a Draw!"
-    } else if (
-        playerSelection === "Rock" && computerSelection === "Scissors" || playerSelection === "Paper" && computerSelection === "Rock" || playerSelection === "Scissors" && computerSelection === "Paper"
-    ) {
-        return "You Win! " + playerSelection + " beats " + computerSelection + "."
-    } else if (
-        playerSelection === "Rock" && computerSelection === "Paper" ||
-        playerSelection === "Paper" && computerSelection === "Scissors" ||
-        playerSelection === "Scissors" && computerSelection === "Rock"
-    ) { 
-        return "You Lose! " + computerSelection + " beats " + playerSelection + "."
-    } else {
-        return "fix it idiot."
-    }
-
-    
+  // Result of the round
+  if (playerSelection === computerSelection) {
+    return "It's a Draw!";
+  } else if (
+    (playerSelection === "Rock" && computerSelection === "Scissors") ||
+    (playerSelection === "Paper" && computerSelection === "Rock") ||
+    (playerSelection === "Scissors" && computerSelection === "Paper")
+  ) {
+    return "You Win! " + playerSelection + " beats " + computerSelection + ".";
+  } else if (
+    (playerSelection === "Rock" && computerSelection === "Paper") ||
+    (playerSelection === "Paper" && computerSelection === "Scissors") ||
+    (playerSelection === "Scissors" && computerSelection === "Rock")
+  ) {
+    return "You Lose! " + computerSelection + " beats " + playerSelection + ".";
+  } else {
+    return "Something went wrong.";
+  }
 }
 
- 
-/*function game () {
-    
-    // Create counters
-    let playerCounter = 0;
-    let cpuCounter = 0;
+// Computer's Choice
+function getComputerChoice() {
+  
+  const arraySelections = ["Rock", "Paper", "Scissors"];
 
-    // Create for loop
-    for (let i = 0; i < 5; i++) {
-         let rounds = singleRound();
-        
-    // Update and return results
-    if (rounds.includes("Win"))
-    {
-        ++playerCounter
-
-    } else if (rounds.includes("Lose")) {
-
-        ++cpuCounter
-    }
-
-    // Return round winner
-    console.log(rounds);
-    console.log("Player score: " + playerCounter + " | CPU score: " + cpuCounter);
+  // Number generator
+  const computerChoice = arraySelections[Math.floor(Math.random() * 3)];
+  return computerChoice;
 }
-
-// Declare winner after the game
-if (playerCounter > cpuCounter) {
-    return "Player wins the game!";
-} else if (cpuCounter > playerCounter) {
-    return ("Computer wins the game!")
-} else {
-    return "It's a tie"
-}
-}
-*/
-
-// Console checks
