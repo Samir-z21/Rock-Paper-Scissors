@@ -17,3 +17,5 @@
         a. call upon previous function 5 times in a way that it plays one round at a time,
         b. update and return the score after each round,
         c. end the game after 5 rounds and declare the winner who won most rounds, 
+
+        [Live Demo](https://samir-z21.github.io/Rock-Paper-Scissors/)
