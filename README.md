@@ -1,4 +1,5 @@
   [Live Demo](https://samir-z21.github.io/Rock-Paper-Scissors/)
+  
 //Peusocode//
 
     1.
