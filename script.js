@@ -1,5 +1,5 @@
 // Reference to body
-const btn = document.querySelector('#buttons');
+const btn = document.querySelector('.outcome');
 const buttons = document.querySelectorAll('button');
 
 // Player's Choice
@@ -29,14 +29,8 @@ buttons.forEach((button) => {
     // Remove the text for the next round
     if (playerMessage && playerMessage.parentNode === btn) {
         btn.removeChild(playerMessage);
-    }
-    if (cpuMessage && cpuMessage.parentNode === btn) {
         btn.removeChild(cpuMessage);
-    }
-    if (result && result.parentNode === btn) {
         btn.removeChild(result);
-    }
-    if (score && score.parentNode === btn) {
         btn.removeChild(score);
     }
     
